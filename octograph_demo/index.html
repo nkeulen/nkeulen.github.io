@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OctoGraph - Demo</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="octograph.js"></script>
+  <link rel="stylesheet" href="demo_style.css" />
+</head>
+<body>
+
+<h1>OctoGraph - Demo</h1>
+
+<p>
+A tool for creating simple, pretty and customizable network diagrams on the fly from JSON data.
+</p>
+
+<div class="diagram_container">
+<canvas class="octograph_diagram" width="800" height="600">
+{
+  "nodes":
+    [
+      {  "type":"router", "name":"R1", "pos":{"x":"390", "y":"100"}  },
+      {  "type":"switch", "name":"CSW1", "pos":{"x":"190", "y":"275"}  },
+      {  "type":"switch", "name":"CSW2", "pos":{"x":"590", "y":"275"}  },
+      {  "type":"switch", "name":"DSW1", "pos":{"x":"150", "y":"460"}  },
+      {  "type":"switch", "name":"DSW2", "pos":{"x":"375", "y":"460"}  },
+      {  "type":"switch", "name":"DSW3", "pos":{"x":"600", "y":"460"}  }
+    ],
+  "connections": [
+      {  "type":"10gigE", "from":"R1", "to":"CSW1"  },
+      {  "type":"10gigE", "from":"R1", "to":"CSW1"  },
+      {  "type":"10gigE", "from":"R1", "to":"CSW2"  },
+      {  "type":"10gigE", "from":"R1", "to":"CSW2"  },
+      {  "type":"10gigE", "from":"CSW1", "to":"CSW2"  },
+      {  "type":"10gigE", "from":"CSW1", "to":"CSW2"  },
+      {  "type":"unspecified", "from":"CSW1", "to":"DSW1"  },
+      {  "type":"unspecified", "from":"CSW1", "to":"DSW2"  },
+      {  "type":"unspecified", "from":"CSW1", "to":"DSW3"  },
+      {  "type":"unspecified", "from":"CSW2", "to":"DSW1"  },
+      {  "type":"unspecified", "from":"CSW2", "to":"DSW2"  },
+      {  "type":"unspecified", "from":"CSW2", "to":"DSW3"  }
+  ],
+  "areas": [
+    {  "title":"Edge", "nodes":["R1"]  },
+    {  "title":"Core", "nodes":["CSW1","CSW2"]  },
+    {  "title":"Distribution", "nodes":["DSW1","DSW2","DSW3"]  }
+  ]
+}
+</canvas>
+</div>
+
+</body>
+</html>
